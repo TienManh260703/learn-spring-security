@@ -4,7 +4,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import manhnt.security.dto.LoginRequest;
 import manhnt.security.security.CustomUserDetail;
@@ -54,11 +53,10 @@ public class AuthController {
 
     }
 
-    //
     @PostMapping("/loginv2")
     public ResponseEntity<?> loginv2(@RequestBody LoginRequest loginRequest,
-                                   HttpServletRequest request,
-                                   HttpServletResponse response) {
+                                     HttpServletRequest request,
+                                     HttpServletResponse response) {
         try {
             // 1️⃣ Xác thực thông tin username/password
             Authentication authentication = authenticationManager.authenticate(
