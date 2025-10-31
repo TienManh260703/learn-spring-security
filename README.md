@@ -161,3 +161,16 @@ SecurityContext chỉ tồn tại trong request hiện tại.
 Token JWT lưu ở client (tránh session fix).
 
 Phù hợp cho REST API, SPA, Mobile app.
+
++-----------------------------------------+
+📘 So sánh nhanh 2 cơ chế
+Tiêu chí	Form Login	JWT Token
+Lưu trạng thái	Có (Session)	Không (Stateless)
+SecurityContext	Lưu trong session	Chỉ tồn tại per-request
+Token truyền	Cookie (JSESSIONID)	Header Authorization
+Phù hợp	Web app truyền thống	REST API / Mobile app
+Ưu điểm	Đơn giản, dễ cấu hình	Linh hoạt, mở rộng tốt
+Nhược điểm	Không mở rộng cho client khác	Phức tạp hơn, cần tự quản token
+
++-----------------------------------------+
+
