@@ -91,11 +91,11 @@
 
 ✅ Đặc điểm của Form Login Flow:
 
-Dựa trên Session (stateful).
-
-SecurityContext lưu trong HttpSession.
-
-Thường dùng cho ứng dụng web truyền thống (Thymeleaf, JSP, ...).
+  * Dựa trên Session (stateful).
+  * 
+  * SecurityContext lưu trong HttpSession.
+  * 
+  * Thường dùng cho ứng dụng web truyền thống (Thymeleaf, JSP, ...).
 
 +-----------------------------------------
 🔐 2️⃣ Spring Security – JWT Token Flow (stateless)
@@ -154,23 +154,68 @@ Thường dùng cho ứng dụng web truyền thống (Thymeleaf, JSP, ...).
 
 ✅ Đặc điểm của JWT Flow:
 
-Stateless – không dùng session.
-
-SecurityContext chỉ tồn tại trong request hiện tại.
-
-Token JWT lưu ở client (tránh session fix).
-
-Phù hợp cho REST API, SPA, Mobile app.
+  * Stateless – không dùng session.
+  * 
+  * SecurityContext chỉ tồn tại trong request hiện tại.
+  * 
+  * Token JWT lưu ở client (tránh session fix).
+  * 
+  * Phù hợp cho REST API, SPA, Mobile app.
 
 +-----------------------------------------+
 📘 So sánh nhanh 2 cơ chế
-Tiêu chí	Form Login	JWT Token
-Lưu trạng thái	Có (Session)	Không (Stateless)
-SecurityContext	Lưu trong session	Chỉ tồn tại per-request
-Token truyền	Cookie (JSESSIONID)	Header Authorization
-Phù hợp	Web app truyền thống	REST API / Mobile app
-Ưu điểm	Đơn giản, dễ cấu hình	Linh hoạt, mở rộng tốt
-Nhược điểm	Không mở rộng cho client khác	Phức tạp hơn, cần tự quản token
+  * Tiêu chí	Form Login	JWT Token
+  * Lưu trạng thái	Có (Session)	Không (Stateless)
+  * SecurityContext	Lưu trong session	Chỉ tồn tại per-request
+  * Token truyền	Cookie (JSESSIONID)	Header Authorization
+  * Phù hợp	Web app truyền thống	REST API / Mobile app
+  * Ưu điểm	Đơn giản, dễ cấu hình	Linh hoạt, mở rộng tốt
+  * Nhược điểm	Không mở rộng cho client khác	Phức tạp hơn, cần tự quản token
 
 +-----------------------------------------+
+
+* Nắm rõ vai trò:
+  * 
+  * AuthenticationManager
+  * 
+  * AuthenticationProvider
+  * 
+  * DaoAuthenticationProvider
+  * 
+  * UserDetailsService
+  * 
+  * UserDetails
+  * 
+  * SecurityFilterChain
+  * 
+  * SecurityContextPersistenceFilter
+  * 
+* Biết luồng xác thực bắt đầu từ đâu và kết thúc ở đâu.
+
++------------------------------------------+
+
+  * Phân quyền theo role (@PreAuthorize("hasRole('ADMIN')"))
+  * 
+  * Hoặc theo permission tùy chi tiết
+  * 
+  * Hiểu rõ sự khác nhau giữa:
+    * 
+    * GrantedAuthority
+    * 
+    * Role
+    * 
+    * Authority
+    * 
+    * Authentication
+
++------------------------------------------+
+
+🧱 6. Hiểu điểm mạnh / yếu của Session Auth
+| Tiêu chí       | Session-based       | JWT-based                      |
+| -------------- | ------------------- | ------------------------------ |
+| Lưu state      | Server (RAM)        | Client (token)                 |
+| Logout         | Dễ thực hiện        | Khó (phải blacklist token)     |
+| Phù hợp        | Web app             | SPA, mobile, microservice      |
+| Bảo mật cookie | Cần HTTPS, HttpOnly | Token có thể dùng localStorage |
+
 

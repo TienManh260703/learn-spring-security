@@ -15,4 +15,5 @@ public class DemoGit {
     private String password;
 //    ok g
     // demo squash commit
+    private String role;
 }
